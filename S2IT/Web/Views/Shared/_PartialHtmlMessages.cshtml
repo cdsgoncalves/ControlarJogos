@@ -1,0 +1,14 @@
+﻿@{
+    var model = TempData["Message"] as Web.Models.HtmlMessageModel;
+
+    if (!string.IsNullOrEmpty(model?.Message))
+    {
+        <div class="alert alert-@(model.Type) flyout">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <span>@Html.Raw(model.Message)</span>
+        </div>
+    }
+}
+<script>
+    window.setTimeout(function () { jQuery("div.flyout").animate({ "bottom": "-92px" }, 1000); }, 3000);
+</script>

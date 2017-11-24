@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Usuários";
+    ViewBag.TituloPagina = "Usuários";
+    ViewBag.DescricaoPagina = "usuários cadastrados";
+}
+
+<div class="box-header"></div>
+<!-- /.box-header -->
+<div class="box-body">
+    <table class="table table-striped table-bordered dataTable" id="tblData"></table>
+</div>
+<!-- /.box-body -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tblData').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "@Url.Action("Listar")",
+                select: true,
+                responsive: true,
+                columns: [
+                    { data: "Id", title: "Id", sort: true },
+                    { data: "Email", title: "Email", sort: false },
+                    { data: "Nome", title: "Nome", sort: false },
+                    {
+                        data: "CadastradoEm",
+                        title: "Data Cadastro",
+                        sort: false,
+                        render: function (data) {
+                            return converterTimestampParaData(data);
+                        }
+                    },
+                    {
+                        title: "Ações",
+                        render: function (data, type, row) {
+                            return "<a class='btn btn-default' title='Editar " + row.Nome + "' href='/usuario/" + row.Id + "/editar'><i class='fa fa-pencil'></i></a>" +
+                                    "<a class='delete btn btn-danger' data-confirm='Tem certeza que deseja deletar o usuário " + row.Nome + "?' title='Deletar " + row.Nome + "' href='/usuario/" + row.Id + "/deletar'><i class='fa fa-trash'></i></a>";
+                        },
+                        orderable: false,
+                        className: "center"
+                    }
+                ],
+                drawCallback: function () {
+                    configurarBotoesDelete();
+                }
+            });
+
+            $('#tblData_filter').before("<div class='dataTables_filter'><a class='btn btn-default btn-datatable' href='/usuario/novo'><i class='fa fa-plus'></i> Adicionar novo</a></div>");
+        });
+    </script>
+}

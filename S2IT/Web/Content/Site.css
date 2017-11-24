@@ -1,0 +1,32 @@
+﻿body {
+    overflow-y: scroll;
+}
+.btn.btn-datatable {
+    height: 30px;
+    line-height: 16px;
+    margin: 0 7px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0;
+    margin: -1px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: none !important;
+    background: none !important;
+}
+.center {
+    text-align: center;
+}
+.center a {
+    margin: 0 2px;
+}
+.alert.alert-success.flyout, .alert.alert-error.flyout, .alert.alert-warning.flyout {
+    width: 300px;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    right: 15px;
+    opacity: 0.95;
+}
+
